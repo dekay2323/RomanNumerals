@@ -10,12 +10,16 @@ import spock.lang.Unroll
  * Created by demian on 2016-09-21.
  */
 class RomanNumeralSpike extends Specification {
-    def charValues = [X:10, V:5, I:1]
+    def romanNumeralValues = [M:1000, D:500, C:100, L:50, X:10, V:5, I:1]
 
     def toRomanNumeral = {anInteger ->
-        def buckets = [X:0, V:0, I:0]
+        def buckets = [:]
+        buckets = romanNumeralValues.collectEntries  { pair->
+            [(pair.key):0]
+        }
+        println "inital buckets = ${buckets}"
         println "decimal = ${anInteger}"
-        charValues.each { pair ->
+        romanNumeralValues.each { pair ->
             println "charVal.value = ${pair.value}"
             println "anInteger/charVal.value = ${anInteger/pair.value}"
             println "anInteger%charVal.value = ${anInteger%pair.value}"
@@ -57,6 +61,6 @@ class RomanNumeralSpike extends Specification {
         12          || 'XII'
         13          || 'XIII'
         14          || 'XIIII'
-        14          || 'XV'
+        15          || 'XV'
     }
 }
