@@ -13,14 +13,15 @@ class RomanNumeralSpike extends Specification {
     def romanNumeralValues = [M:1000, CM:900, D:500, CD:400, C:100, XC:90, L:50, XL:40, X:10, IX:9, V:5, IV:4, I:1]
 
     def toRomanNumeral = {anInteger ->
-        def ans = ""
-        romanNumeralValues.each { pair ->
+        romanNumeralValues.inject("") { curAnswer, pair ->
             if (anInteger/pair.value >= 1) {
-                ans += "${pair.key}" * anInteger.intdiv(pair.value)
-                anInteger = anInteger - (anInteger.intdiv(pair.value)*pair.value)
+                def number = anInteger.intdiv(pair.value)
+                anInteger = anInteger - (number*pair.value)
+                curAnswer + "${pair.key}" * number
+            } else {
+                curAnswer
             }
         }
-        ans
     }
 
 
