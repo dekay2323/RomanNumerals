@@ -13,14 +13,27 @@ class RomanNumeralSpike extends Specification {
     def charValues = [X:10, V:5, I:1]
 
     def romanSolver = {decimal ->
-        charValues.each {charVal ->
-            println "decimal(${decimal}) % char.value(${charVal.value})"
-            if (decimal % charVal.value >= 0) {
-                (1..(decimal / charVal.value)).each {
-                    println charVal.key
-                }
+        def buckets = [X:0, V:0, I:0]
+        println "decimal = ${decimal}"
+        charValues.each { charVal ->
+            println "charVal.value = ${charVal.value}"
+            println "decimal/charVal.value = ${decimal/charVal.value}"
+            println "decimal%charVal.value = ${decimal%charVal.value}"
+            if (decimal/charVal.value >= 1) {
+                buckets.(charVal.key) += decimal.intdiv(charVal.value)
+                decimal = decimal - (decimal.intdiv(charVal.value)*charVal.value)
+                println "new decimal = ${decimal}"
+            }
+            println "buckets = ${buckets}"
+        }
+        def answer = buckets.inject("") { result, charVal ->
+            if (charVal.value > 0) {
+                result += "${charVal.key}" * charVal.value
+            } else {
+                result
             }
         }
+        answer
     }
 
     @Unroll
@@ -41,8 +54,8 @@ class RomanNumeralSpike extends Specification {
         9           || 'VIIII'
         10          || 'X'
         11          || 'XI'
-        12          || 'XI'
-        13          || 'XI'
+        12          || 'XII'
+        13          || 'XIII'
         14          || 'XIIII'
         14          || 'XV'
     }
