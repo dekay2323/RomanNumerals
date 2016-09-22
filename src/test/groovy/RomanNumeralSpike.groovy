@@ -12,23 +12,23 @@ import spock.lang.Unroll
 class RomanNumeralSpike extends Specification {
     def charValues = [X:10, V:5, I:1]
 
-    def romanSolver = {decimal ->
+    def toRomanNumeral = {anInteger ->
         def buckets = [X:0, V:0, I:0]
-        println "decimal = ${decimal}"
-        charValues.each { charVal ->
-            println "charVal.value = ${charVal.value}"
-            println "decimal/charVal.value = ${decimal/charVal.value}"
-            println "decimal%charVal.value = ${decimal%charVal.value}"
-            if (decimal/charVal.value >= 1) {
-                buckets.(charVal.key) += decimal.intdiv(charVal.value)
-                decimal = decimal - (decimal.intdiv(charVal.value)*charVal.value)
-                println "new decimal = ${decimal}"
+        println "decimal = ${anInteger}"
+        charValues.each { pair ->
+            println "charVal.value = ${pair.value}"
+            println "anInteger/charVal.value = ${anInteger/pair.value}"
+            println "anInteger%charVal.value = ${anInteger%pair.value}"
+            if (anInteger/pair.value >= 1) {
+                buckets.(pair.key) += anInteger.intdiv(pair.value)
+                anInteger = anInteger - (anInteger.intdiv(pair.value)*pair.value)
+                println "new anInteger = ${anInteger}"
             }
             println "buckets = ${buckets}"
         }
-        def answer = buckets.inject("") { result, charVal ->
-            if (charVal.value > 0) {
-                result += "${charVal.key}" * charVal.value
+        def answer = buckets.inject("") { result, pair ->
+            if (pair.value > 0) {
+                result += "${pair.key}" * pair.value
             } else {
                 result
             }
@@ -37,12 +37,12 @@ class RomanNumeralSpike extends Specification {
     }
 
     @Unroll
-    def "Roman Numerals solver (non subtractive) #decimal = #romanNumeral"() {
+    def "Roman Numerals solver (non subtractive) #anInteger = #romanNumeral"() {
         expect:
-        romanSolver(decimal) == romanNumeral
+        toRomanNumeral(anInteger) == romanNumeral
 
         where:
-        decimal     || romanNumeral
+        anInteger     || romanNumeral
         1           || 'I'
         2           || 'II'
         3           || 'III'
