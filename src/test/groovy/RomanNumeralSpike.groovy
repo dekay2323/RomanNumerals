@@ -24,10 +24,54 @@ class RomanNumeralSpike extends Specification {
         }
     }
 
+    def fromRomanNumeral = {anRomanNumeral ->
+        romanNumeralValues.inject(0) { curAnswer, pair ->
+            if (anRomanNumeral.find(pair.key)) {
+                anRomanNumeral = anRomanNumeral.substring(pair.key.size()-1)
+                curAnswer + pair.value
+            } else {
+                curAnswer
+            }
+        }
+    }
+
     @Unroll
-    def "Roman Numerals solver #anInteger = #romanNumeral"() {
+    def "Solve from #anInteger = #romanNumeral"() {
         expect:
         toRomanNumeral(anInteger) == romanNumeral
+
+        where:
+        anInteger   || romanNumeral
+        1           || 'I'
+        2           || 'II'
+        3           || 'III'
+        4           || 'IV'
+        5           || 'V'
+        6           || 'VI'
+        7           || 'VII'
+        8           || 'VIII'
+        9           || 'IX'
+        10          || 'X'
+        11          || 'XI'
+        12          || 'XII'
+        13          || 'XIII'
+        14          || 'XIV'
+        15          || 'XV'
+        49          || 'XLIX'
+        50          || 'L'
+        51          || 'LI'
+        99          || 'XCIX'
+        100         || 'C'
+        101         || 'CI'
+        500         || 'D'
+        1000        || 'M'
+        2016        || 'MMXVI'
+    }
+
+    @Unroll
+    def "Solve from #romanNumeral = #anInteger"() {
+        expect:
+        fromRomanNumeral(romanNumeral) == anInteger
 
         where:
         anInteger   || romanNumeral
