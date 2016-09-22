@@ -24,9 +24,8 @@ class RomanNumeralSpike extends Specification {
         }
     }
 
-
     @Unroll
-    def "Roman Numerals solver (non subtractive) #anInteger = #romanNumeral"() {
+    def "Roman Numerals solver #anInteger = #romanNumeral"() {
         expect:
         toRomanNumeral(anInteger) == romanNumeral
 
