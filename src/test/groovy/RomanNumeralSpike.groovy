@@ -25,14 +25,27 @@ class RomanNumeralSpike extends Specification {
     }
 
     def fromRomanNumeral = {anRomanNumeral ->
+        println "original ${anRomanNumeral}"
         romanNumeralValues.inject(0) { curAnswer, pair ->
             if (anRomanNumeral.find(pair.key)) {
-                anRomanNumeral = anRomanNumeral.substring(pair.key.size()-1)
-                curAnswer + pair.value
+                while(anRomanNumeral.find(pair.key)) {
+                    anRomanNumeral = anRomanNumeral.substring(pair.key.size())
+                    println "changing ${anRomanNumeral}"
+                    curAnswer = curAnswer + pair.value
+                    anRomanNumeral.find(pair.key)
+                }
+                curAnswer
             } else {
                 curAnswer
             }
         }
+    }
+
+    def "fast test"() {
+        when:
+        def ans = fromRomanNumeral('IV')
+        then:
+        ans == 3
     }
 
     @Unroll
