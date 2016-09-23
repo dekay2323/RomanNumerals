@@ -1,9 +1,10 @@
 package com.strata;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.Set;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by demian on 2016-09-22.
@@ -13,7 +14,7 @@ public class RomanNumerConverterImpl implements com.strata.RomanNumeralConverter
     final private LinkedHashMap<String, Integer> fromRomanNumeralPairs;
 
     public RomanNumerConverterImpl() {
-        toRomanNumeralPairs = (LinkedHashMap)Collections.unmodifiableMap(new LinkedHashMap<String, Integer>() {
+        toRomanNumeralPairs = new LinkedHashMap<String, Integer>() {
             {
                 put("M", 1000);
                 put("CM", 900);
@@ -29,9 +30,9 @@ public class RomanNumerConverterImpl implements com.strata.RomanNumeralConverter
                 put("IV", 4);
                 put("I", 1);
             }
-        });
-        fromRomanNumeralPairs = (LinkedHashMap)Collections.unmodifiableMap(new LinkedHashMap<String, Integer>() {
-            {
+        };
+        fromRomanNumeralPairs = new LinkedHashMap<String, Integer>() {
+                {
                 put("CM", 900);
                 put("M", 1000);
                 put("CD", 400);
@@ -46,7 +47,7 @@ public class RomanNumerConverterImpl implements com.strata.RomanNumeralConverter
                 put("V", 5);
                 put("I", 1);
             }
-        });
+        };
     }
 
 
@@ -55,32 +56,31 @@ public class RomanNumerConverterImpl implements com.strata.RomanNumeralConverter
         return null;
     }
 
-    public int fromRomanNumeral(String romanNumeral) {
-/*        def fromRomanNumeral = { anRomanNumeral ->
-                println "original ${anRomanNumeral}"
-                fromRomanNumeralPairs.inject(0) { curAnswer, pair ->
-        while (anRomanNumeral.find(pair.key)) {
-            anRomanNumeral = anRomanNumeral.substring(pair.key.size())
-            println "changing ${anRomanNumeral}"
-            curAnswer = curAnswer + pair.value
-            anRomanNumeral.find(pair.key)
+    public class Tuple {
+        public final String x;
+        public final Integer y;
+        public Tuple(String x, Integer y) {
+            this.x = x;
+            this.y = y;
         }
-        curAnswer
-        }*/
+    }
 
-        Set<String> set = fromRomanNumeralPairs.keySet();
-        Stream<String> stream = set.stream();
-
-
-        int answer = stream.reduce(0, (int curAnswer, String key) -> {
-            String tempRomanNumeral = romanNumeral;
-            while(tempRomanNumeral.indexOf(key) != -1)  {
-                tempRomanNumeral = tempRomanNumeral.substring(0, key.length());
-                curAnswer = curAnswer + fromRomanNumeralPairs.get(key).intValue();
-
+    public int fromRomanNumeral(final String romanNumeral) {
+        String currentRomanNumeral = romanNumeral;
+        ArrayList<Tuple> listOfPairs = (ArrayList<Tuple>)fromRomanNumeralPairs.entrySet()
+                .stream()
+                .map(a->new Tuple(a.getKey(), a.getValue()))
+                .collect(Collectors.toList());
+        int answer = 0;
+        while (currentRomanNumeral.length() > 0) {
+            Tuple currentTuple = listOfPairs.get(0);
+            if(currentRomanNumeral.indexOf(currentTuple.x) != -1) {
+                currentRomanNumeral = currentRomanNumeral.replaceFirst(currentTuple.x, "");
+                answer = answer + currentTuple.y;
+            } else {
+                listOfPairs.remove(0);
             }
-            return curAnswer;
-        });
+        }
 
         return answer;
     }
