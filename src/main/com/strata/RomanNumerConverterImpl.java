@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.sun.deploy.util.StringUtils;
+import groovy.lang.Tuple;
 
 /**
  * Created by demian on 2016-09-22.
@@ -53,7 +57,15 @@ public class RomanNumerConverterImpl implements com.strata.RomanNumeralConverter
 
 
     public String toRomanNumeral(int number) {
-        return null;
+        String answer = "";
+        for (Map.Entry<String, Integer> entry : toRomanNumeralPairs.entrySet()) {
+            if (number / entry.getValue() >= 1) {
+                final int howMany = number / entry.getValue();
+                number = number - (howMany * entry.getValue());
+                answer = answer + String.join("", Collections.nCopies(howMany, entry.getKey()));
+            }
+        }
+        return answer;
     }
 
     public class Tuple {
