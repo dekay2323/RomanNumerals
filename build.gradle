@@ -4,7 +4,7 @@ version = "1.0"
 description = "Spock Framework - Example Project"
 
 // Spock works with Java 1.5 and above
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
   // Spock releases are available from Maven Central
