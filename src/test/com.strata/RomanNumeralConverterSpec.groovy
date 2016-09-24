@@ -12,10 +12,49 @@ import spock.lang.Unroll
  */
 class RomanNumeralConverterSpec extends Specification {
 
+    def "fromRomanNumeral handles invalid roman numeral values"() {
+        setup:
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
+
+        when: "invalid value"
+        convertor.fromRomanNumeral('*')
+        then:
+        thrown NumberFormatException
+
+        when: "empty string value"
+        convertor.fromRomanNumeral('')
+        then:
+        thrown NumberFormatException
+
+        when: "spaces for value"
+        convertor.fromRomanNumeral('  ')
+        then:
+        thrown NumberFormatException
+
+        when: "null value"
+        convertor.fromRomanNumeral(null)
+        then:
+        thrown NumberFormatException
+
+        when: "some valid some invalid values"
+        convertor.fromRomanNumeral('V*I*')
+        then:
+        thrown NumberFormatException
+    }
+
+    def "fromRomanNumeral should handle leading and trailing spaces"() {
+        setup:
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
+        when:
+        convertor.fromRomanNumeral('  V  ')
+        then:
+        thrown NumberFormatException
+    }
+
     @Unroll
     def "JAVA  Solve fromRomanNumeral(#romanNumeral) = #anInteger"() {
         setup:
-        RomanNumeralConverter convertor = new RomanNumerConverterImpl()
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
 
         expect:
         convertor.fromRomanNumeral(romanNumeral) == anInteger
@@ -55,7 +94,7 @@ class RomanNumeralConverterSpec extends Specification {
     @Unroll
     def "JAVA Solve toRomanNumeral(#anInteger) = #romanNumeral"() {
         setup:
-        RomanNumeralConverter convertor = new RomanNumerConverterImpl()
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
 
         expect:
         convertor.toRomanNumeral(anInteger) == romanNumeral

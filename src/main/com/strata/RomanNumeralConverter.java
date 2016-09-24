@@ -7,6 +7,6 @@ package com.strata;
  * Created by demian on 2016-09-22.
  */
 public interface RomanNumeralConverter {
-    int fromRomanNumeral(String romanNumeral);
+    int fromRomanNumeral(String romanNumeral) throws NumberFormatException;
     String toRomanNumeral(int number);
 }
