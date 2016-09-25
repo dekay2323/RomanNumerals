@@ -34,7 +34,7 @@
 
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">RomanNumeral</span>
-                <g:field class="property-value ${hasErrors(bean:command, field:'romanNumeral', 'error')}" type="text" name="romanNumeral" value="${command?.romanNumeral}" maxlength="8"/>
+                <g:field class="property-value ${hasErrors(bean:command, field:'romanNumeral', 'error')}" type="text" name="romanNumeral" value="${command?.romanNumeral}" maxlength="20"/>
             </li>
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">Decimal</span>

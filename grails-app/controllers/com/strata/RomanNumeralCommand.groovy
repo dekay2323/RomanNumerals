@@ -8,7 +8,7 @@ class RomanNumeralCommand implements Validateable {
 
     static constraints = {
         romanNumeral blank: true, nullable: true, length: 8
-        number blank: true, nullable: true, range: 1..RomanNumeralConverter.LARGEST_NUMBER, length: 5
+        number blank: true, nullable: true, range: 1..RomanNumeralConverter.LARGEST_NUMBER, length: 20
     }
 
     public String toString() {

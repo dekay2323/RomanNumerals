@@ -53,7 +53,7 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
      * Convert from a integer to a roman numeral.
      *
      * @param number Number to convert has upper limit of LARGEST_NUMBER
-     * @throws NumberFormatException Where there was a problem in the conversion, will not return null
+     * @throws NumberFormatException Where there was a problem in the conversion
      * @return
      */
     public String toRomanNumeral(final int number) throws NumberFormatException {
@@ -81,7 +81,7 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
      *
      * @param romanNumeral
      * @return
-     * @throws NumberFormatException
+     * @throws NumberFormatException Where there was a problem in the conversion
      */
     public int fromRomanNumeral(final String romanNumeral) throws NumberFormatException {
         if (romanNumeral == null || romanNumeral.trim().equals("")) {
