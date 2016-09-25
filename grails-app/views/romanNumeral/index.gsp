@@ -15,6 +15,11 @@
 
 <div id="stats" class="content scaffold-list" role="main">
     <h1>Roman Numeral Converter</h1>
+
+    <div>
+        Simple Roman Numeral convertor, handles subtractive notation.
+        Will not handle incorrect roman numerals such as IIVX
+    </div>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -32,11 +37,11 @@
 
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">RomanNumeral</span>
-                <g:field class="property-value" type="text" name="romanNumeral" value="${command?.romanNumeral}" /> ${calcNumber}
+                <g:field class="property-value" type="text" name="romanNumeral" value="${command?.romanNumeral}" />
             </li>
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">Decimal</span>
-                <g:field class="property-value" type="text" name="number" value="${command?.number}" /> ${calcRomanNumeral}
+                <g:field class="property-value" type="text" name="number" value="${command?.number}" />
             </li>
         </ol>
         <fieldset class="buttons">

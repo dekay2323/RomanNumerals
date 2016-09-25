@@ -12,7 +12,21 @@ import spock.lang.Unroll
  */
 class RomanNumeralConverterSpec extends Specification {
 
-    def "fromRomanNumeral handles invalid roman numeral values"() {
+    def "fromRomanNumeral can handle odd roman numerals, backwards and too many"() {
+        setup:
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
+
+        expect:
+        convertor.fromRomanNumeral(romanNumeral) == anInteger
+
+        where:
+        anInteger || romanNumeral
+        17        || 'IIIIVX'
+        18        || 'IVIVX'
+        40        || 'XXXX'
+    }
+
+    def "fromRomanNumeral throws exceptions for invalid roman numeral values"() {
         setup:
         RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
 
@@ -52,7 +66,7 @@ class RomanNumeralConverterSpec extends Specification {
     }
 
     @Unroll
-    def "JAVA  Solve fromRomanNumeral(#romanNumeral) = #anInteger"() {
+    def "Solve fromRomanNumeral(#romanNumeral) = #anInteger"() {
         setup:
         RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
 
@@ -92,7 +106,7 @@ class RomanNumeralConverterSpec extends Specification {
     }
 
     @Unroll
-    def "JAVA Solve toRomanNumeral(#anInteger) = #romanNumeral"() {
+    def "Solve toRomanNumeral(#anInteger) = #romanNumeral"() {
         setup:
         RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
 

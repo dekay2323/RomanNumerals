@@ -9,9 +9,12 @@ class RomanNumeralController {
     }
 
     def calculate(RomanNumeralCommand command) {
-        String calcRomanNumeral = (command?.number) ? romanNumeralService.toRomanNumeral(command?.number) : 0
-        Integer calcNumber = (command?.romanNumeral) ? romanNumeralService.fromRomanNumeral(command?.romanNumeral) : ""
+        if (command?.romanNumeral) {
+            command.number = romanNumeralService.fromRomanNumeral(command?.romanNumeral)
+        } else if (command?.number) {
+            command.romanNumeral = romanNumeralService.toRomanNumeral(command?.number)
+        }
 
-        render view: "index", model: [command: command, calcRomanNumeral: calcRomanNumeral, calcNumber: calcNumber]
+        render view: "index", model: [command: command]
     }
 }

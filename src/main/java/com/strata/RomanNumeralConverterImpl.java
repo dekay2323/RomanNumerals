@@ -56,7 +56,7 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
 
     public int fromRomanNumeral(final String romanNumeral) throws NumberFormatException {
         if (romanNumeral == null || romanNumeral.trim() == "") {
-            throw new NumberFormatException("Cannot convert empty or null romanNumeral to int");
+            throw new NumberFormatException("Cannot convert empty or null roman numeral");
         }
         String tempRomanNumeral = romanNumeral.toUpperCase();
         ArrayList<Tuple> listOfPairs = new ArrayList<>(fromRomanNumeralPairs);
@@ -69,7 +69,7 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
             } else {
                 listOfPairs.remove(0);
                 if (listOfPairs.size() == 0) {
-                    throw new NumberFormatException("Cannot convert romanNumeral [" + romanNumeral + "] to int");
+                    throw new NumberFormatException("Cannot convert roman numeral [" + romanNumeral + "]t");
                 }
             }
         }
