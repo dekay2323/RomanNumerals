@@ -5,10 +5,16 @@ class RomanNumeralController {
 
     def index() {
         RomanNumeralCommand command = []
+
         render view: "index", model: [command: command]
     }
 
     def calculate(RomanNumeralCommand command) {
+        if (command.hasErrors()) {
+            render view: "index", model: [command: command]
+            return
+        }
+
         if (command?.romanNumeral) {
             try {
                 command.number = romanNumeralService.fromRomanNumeral(command?.romanNumeral)
