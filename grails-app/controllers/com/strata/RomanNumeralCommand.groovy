@@ -7,8 +7,8 @@ class RomanNumeralCommand implements Validateable {
     Integer number
 
     static constraints = {
-        romanNumeral blank: true, nullable: true
-        number blank: true, nullable: true
+        romanNumeral blank: true, nullable: true, length: 8
+        number blank: true, nullable: true, range: 1..10000, length: 5
     }
 
     public String toString() {

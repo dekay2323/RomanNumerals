@@ -36,11 +36,11 @@
 
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">RomanNumeral</span>
-                <g:field class="property-value ${hasErrors(bean:command, field:'romanNumeral', 'errors')}" type="text" name="romanNumeral" value="${command?.romanNumeral}" />
+                <g:field class="property-value ${hasErrors(bean:command, field:'romanNumeral', 'error')}" type="text" name="romanNumeral" value="${command?.romanNumeral}" maxlength="8"/>
             </li>
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">Decimal</span>
-                <g:field class="property-value" type="text" name="number" value="${command?.number}" />
+                <g:field class="property-value ${hasErrors(bean:command, field:'number', 'error')}" type="text" name="number" value="${command?.number}"  maxlength="5"/>
             </li>
         </ol>
         <fieldset class="buttons">
