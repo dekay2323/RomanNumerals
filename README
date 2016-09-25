@@ -31,4 +31,8 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - Started on the web interface
 - A little bit of Jquery
 - Worked on error handling and displaying the errors
-- Deploy to Amazon EC2
+- Deploy to Amazon EC2 http://romannumerals.us-east-1.elasticbeanstalk.com/
+- Created json end point for calculation using same code as html
+    - http://localhost:8080/romanNumeral/calculate.json?number=7
+    - http://localhost:8080/romanNumeral/calculate.json?romanNumeral=IV
+
