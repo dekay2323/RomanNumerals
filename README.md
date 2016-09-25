@@ -28,11 +28,13 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 -- Download Gradle 2.13
 -- Download Grails 3.1.8
 -- Download Groovy 2.4.4
+
 #### Tests
 - In the project directory
 - grails clean
 - grails test-app
 - You can see the test results in /build/reports/tests/index.html
+
 #### Run locally (containerless)
 - In the project directory
 - grails run-app
