@@ -12,6 +12,21 @@ import spock.lang.Unroll
  */
 class RomanNumeralConverterSpec extends Specification {
 
+    def "test fromRomanNumeral and toRomanNumeral has no side effects"() {
+        setup:
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
+
+        when:
+        String romanNumeral = "XIV"
+        int number = 98
+        convertor.fromRomanNumeral(romanNumeral)
+        convertor.toRomanNumeral(number)
+
+        then:
+        romanNumeral == "XIV"
+        number == 98
+    }
+
     def "fromRomanNumeral can handle odd roman numerals, backwards and too many"() {
         setup:
         RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
