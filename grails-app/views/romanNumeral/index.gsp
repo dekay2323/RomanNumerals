@@ -10,6 +10,7 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}">Clear</a></li>
+        <li><g:link uri="https://github.com/dekay2323/RomanNumerals" target="_blank">GitHub</g:link> </li>
     </ul>
 </div>
 

@@ -14,6 +14,7 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - I like to spike, and let the code help me find the answer
 - No side effects, as little state as possible
 - Not a fan of comments, the tests and code should serve as documentation
+- I like to commit to git a lot
 
 ### Spike
 - Setup GitHub https://github.com/dekay2323/RomanNumerals (private)
