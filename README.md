@@ -1,7 +1,11 @@
 # Roman Numeral Convertor
 
-By Demian Krige
-Can convert to and from Simple Roman Numerals (subtractive notation). 
+By D Krige 
+Can convert to and from Simple Roman Numerals (subtractive notation).
+- http://romannumerals.us-east-1.elasticbeanstalk.com/
+- You can call it via json at
+    - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?romanNumeral=IV
+    - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?number=7
 
 ## Development Process
 - Used IntelliJ which I love.
@@ -15,6 +19,25 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - No side effects, as little state as possible
 - Not a fan of comments, the tests and code should serve as documentation
 - I like to commit to git a lot
+
+### How to run
+- Using SDKman http://sdkman.io/
+-- Download Gradle 2.13
+-- Download Grails 3.1.8
+-- Download Groovy 2.4.4
+#### Tests
+- In the project directory
+- grails clean
+- grails test-app
+- You can see the test results in /build/reports/tests/index.html
+#### Run locally (containerless)
+- In the project directory
+- grails run-app
+- Go to http://localhost:8080
+
+### Solving the problem
+- In the real world I probably would have eventually Googled for Roman Numeral converters, as there are probably many interesting ways to solve this. 
+- Obviously for this test I did not do that and just developed my own.
 
 ### Spike
 - Setup GitHub https://github.com/dekay2323/RomanNumerals (private)
@@ -34,7 +57,8 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 ### Webapp
 - I created a simple Grails project (in Intellij or simple grails create-app)
     - I choose Grails as it is Spring Boot, with Convention over Code making for Rapid Application Development
-    - Grails works seamlessly with Java
+    - Works seamlessly with Java
+    - Containerless
 - Started on the web interface
 - A little bit of Jquery
 - Worked on error handling and displaying the errors
@@ -42,4 +66,9 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - Created json end point for calculation using same code as html
     - http://localhost:8080/romanNumeral/calculate.json?number=7
     - http://localhost:8080/romanNumeral/calculate.json?romanNumeral=IV
+    
+### Tests
+- Ran test coverage, RomanNumeralConverterImpl 100%
+
+
 
