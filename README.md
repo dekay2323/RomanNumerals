@@ -1,8 +1,10 @@
 # Roman Numeral Convertor
 
-By D Krige 
+By D Krige
+
 Can convert to and from Simple Roman Numerals (subtractive notation).
-- http://romannumerals.us-east-1.elasticbeanstalk.com/
+- You can see it running here 
+    - http://romannumerals.us-east-1.elasticbeanstalk.com/
 - You can call it via json at
     - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?romanNumeral=IV
     - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?number=7
@@ -71,6 +73,10 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 ### Tests
 - Ran test coverage, RomanNumeralConverterImpl 100%
 - I did NOT include controller tests, as these are very Grails specific
+
+### Improvements
+- I would imagine the convertor algorithm could be more efficient
+- Java 8 streams, maybe concurrent
 
 
 
