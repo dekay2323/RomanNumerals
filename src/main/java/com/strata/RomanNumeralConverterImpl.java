@@ -7,39 +7,39 @@ import java.util.Collections;
  * Created by demian on 2016-09-22.
  */
 public class RomanNumeralConverterImpl implements RomanNumeralConverter {
-    final private ArrayList<Tuple> toRomanNumeralPairs;
-    final private ArrayList<Tuple> fromRomanNumeralPairs;
+    final private ArrayList<Pair> toRomanNumeralPairs;
+    final private ArrayList<Pair> fromRomanNumeralPairs;
 
     public RomanNumeralConverterImpl() {
-        toRomanNumeralPairs = new ArrayList<Tuple>();
-        toRomanNumeralPairs.add(new Tuple("M", 1000));
-        toRomanNumeralPairs.add(new Tuple("CM", 900));
-        toRomanNumeralPairs.add(new Tuple("D", 500));
-        toRomanNumeralPairs.add(new Tuple("CD", 400));
-        toRomanNumeralPairs.add(new Tuple("C", 100));
-        toRomanNumeralPairs.add(new Tuple("XC", 90));
-        toRomanNumeralPairs.add(new Tuple("L", 50));
-        toRomanNumeralPairs.add(new Tuple("XL", 40));
-        toRomanNumeralPairs.add(new Tuple("X", 10));
-        toRomanNumeralPairs.add(new Tuple("IX", 9));
-        toRomanNumeralPairs.add(new Tuple("V", 5));
-        toRomanNumeralPairs.add(new Tuple("IV", 4));
-        toRomanNumeralPairs.add(new Tuple("I", 1));
+        toRomanNumeralPairs = new ArrayList<>();
+        toRomanNumeralPairs.add(new Pair("M", 1000));
+        toRomanNumeralPairs.add(new Pair("CM", 900));
+        toRomanNumeralPairs.add(new Pair("D", 500));
+        toRomanNumeralPairs.add(new Pair("CD", 400));
+        toRomanNumeralPairs.add(new Pair("C", 100));
+        toRomanNumeralPairs.add(new Pair("XC", 90));
+        toRomanNumeralPairs.add(new Pair("L", 50));
+        toRomanNumeralPairs.add(new Pair("XL", 40));
+        toRomanNumeralPairs.add(new Pair("X", 10));
+        toRomanNumeralPairs.add(new Pair("IX", 9));
+        toRomanNumeralPairs.add(new Pair("V", 5));
+        toRomanNumeralPairs.add(new Pair("IV", 4));
+        toRomanNumeralPairs.add(new Pair("I", 1));
 
-        fromRomanNumeralPairs = new ArrayList<Tuple>();
-        fromRomanNumeralPairs.add(new Tuple("CM", 900));
-        fromRomanNumeralPairs.add(new Tuple("M", 1000));
-        fromRomanNumeralPairs.add(new Tuple("CD", 400));
-        fromRomanNumeralPairs.add(new Tuple("D", 500));
-        fromRomanNumeralPairs.add(new Tuple("XC", 90));
-        fromRomanNumeralPairs.add(new Tuple("C", 100));
-        fromRomanNumeralPairs.add(new Tuple("XL", 40));
-        fromRomanNumeralPairs.add(new Tuple("L", 50));
-        fromRomanNumeralPairs.add(new Tuple("IX", 9));
-        fromRomanNumeralPairs.add(new Tuple("X", 10));
-        fromRomanNumeralPairs.add(new Tuple("IV", 4));
-        fromRomanNumeralPairs.add(new Tuple("V", 5));
-        fromRomanNumeralPairs.add(new Tuple("I", 1));
+        fromRomanNumeralPairs = new ArrayList<>();
+        fromRomanNumeralPairs.add(new Pair("CM", 900));
+        fromRomanNumeralPairs.add(new Pair("M", 1000));
+        fromRomanNumeralPairs.add(new Pair("CD", 400));
+        fromRomanNumeralPairs.add(new Pair("D", 500));
+        fromRomanNumeralPairs.add(new Pair("XC", 90));
+        fromRomanNumeralPairs.add(new Pair("C", 100));
+        fromRomanNumeralPairs.add(new Pair("XL", 40));
+        fromRomanNumeralPairs.add(new Pair("L", 50));
+        fromRomanNumeralPairs.add(new Pair("IX", 9));
+        fromRomanNumeralPairs.add(new Pair("X", 10));
+        fromRomanNumeralPairs.add(new Pair("IV", 4));
+        fromRomanNumeralPairs.add(new Pair("V", 5));
+        fromRomanNumeralPairs.add(new Pair("I", 1));
     }
 
     public String toRomanNumeral(int number) {
@@ -50,28 +50,32 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
             throw new NumberFormatException("Cannot convert a number larger than " + LARGEST_NUMBER);
         }
         StringBuffer romanNumeral = new StringBuffer("");
-        for (Tuple entry : toRomanNumeralPairs) {
-            if (number / entry.y >= 1) {
-                final int howManyTimes = number / entry.y;
-                number = number - (howManyTimes * entry.y);
-                romanNumeral = romanNumeral.append(String.join("", Collections.nCopies(howManyTimes, entry.x)));
+        for (Pair entry : toRomanNumeralPairs) {
+            final int dividesHowManyTimes = number / entry.number;
+            if (dividesHowManyTimes >= 1) {
+                number = number - (dividesHowManyTimes * entry.number);
+                romanNumeral = romanNumeral.append(String.join("",
+                        Collections.nCopies(dividesHowManyTimes, entry.romanNumeral)));
             }
         }
         return romanNumeral.toString().toUpperCase();
     }
 
     public int fromRomanNumeral(final String romanNumeral) throws NumberFormatException {
-        if (romanNumeral == null || romanNumeral.trim() == "") {
+        if (romanNumeral == null || romanNumeral.trim().equals("")) {
             throw new NumberFormatException("Cannot convert empty or null roman numeral");
         }
-        String tempRomanNumeral = romanNumeral.toUpperCase();
-        ArrayList<Tuple> listOfPairs = new ArrayList<>(fromRomanNumeralPairs);
+        StringBuffer tempRomanNumeral = new StringBuffer(romanNumeral.toUpperCase());
+        ArrayList<Pair> listOfPairs = new ArrayList<>(fromRomanNumeralPairs);
         int number = 0;
         while (tempRomanNumeral.length() > 0) {
-            Tuple currentTuple = listOfPairs.get(0);
-            if (tempRomanNumeral.indexOf(currentTuple.x) != -1) {
-                tempRomanNumeral = tempRomanNumeral.replaceFirst(currentTuple.x, "");
-                number = number + currentTuple.y;
+            final Pair currentPair = listOfPairs.get(0);
+            final int findTuple = tempRomanNumeral.indexOf(currentPair.romanNumeral);
+            if (findTuple != -1) {
+                tempRomanNumeral = tempRomanNumeral.delete(
+                        findTuple,
+                        findTuple + currentPair.romanNumeral.length());
+                number = number + currentPair.number;
             } else {
                 listOfPairs.remove(0);
                 if (listOfPairs.size() == 0) {
@@ -83,13 +87,13 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
         return number;
     }
 
-    private class Tuple {
-        final String x;
-        final Integer y;
+    private class Pair {
+        final String romanNumeral;
+        final Integer number;
 
-        Tuple(String x, Integer y) {
-            this.x = x;
-            this.y = y;
+        Pair(String romanNumeral, Integer number) {
+            this.romanNumeral = romanNumeral;
+            this.number = number;
         }
     }
 }

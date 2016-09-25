@@ -7,7 +7,6 @@ class RomanNumeralController {
 
     def index() {
         RomanNumeralCommand command = []
-
         render view: "index", model: [command: command]
     }
 
@@ -29,10 +28,7 @@ class RomanNumeralController {
             try {
                 command.number = romanNumeralService.fromRomanNumeral(command?.romanNumeral)
             } catch (NumberFormatException e) {
-                command.errors.rejectValue(
-                        'romanNumeral',
-                        '',
-                        e.getMessage())
+                command.errors.rejectValue('romanNumeral','',e.getMessage())
             }
         } else if (command?.number) {
             command.romanNumeral = romanNumeralService.toRomanNumeral(command?.number)
