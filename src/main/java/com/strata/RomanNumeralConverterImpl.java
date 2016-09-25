@@ -69,7 +69,7 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
             } else {
                 listOfPairs.remove(0);
                 if (listOfPairs.size() == 0) {
-                    throw new NumberFormatException("Cannot convert roman numeral [" + romanNumeral + "]t");
+                    throw new NumberFormatException("Cannot convert roman numeral [" + romanNumeral + "]");
                 }
             }
         }

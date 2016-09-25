@@ -6,7 +6,7 @@ import grails.transaction.NotTransactional
 class RomanNumeralService {
 
     @NotTransactional
-    def Integer fromRomanNumeral(String romanNumeral) {
+    def Integer fromRomanNumeral(String romanNumeral) throws NumberFormatException {
         // Call the JAVA
         RomanNumeralConverter convertor = new RomanNumeralConverterImpl();
         convertor.fromRomanNumeral(romanNumeral)

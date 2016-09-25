@@ -18,7 +18,6 @@
 
     <div>
         Simple Roman Numeral convertor, handles subtractive notation.
-        Will not handle incorrect roman numerals such as IIVX
     </div>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
@@ -37,7 +36,7 @@
 
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">RomanNumeral</span>
-                <g:field class="property-value" type="text" name="romanNumeral" value="${command?.romanNumeral}" />
+                <g:field class="property-value ${hasErrors(bean:command, field:'romanNumeral', 'errors')}" type="text" name="romanNumeral" value="${command?.romanNumeral}" />
             </li>
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">Decimal</span>

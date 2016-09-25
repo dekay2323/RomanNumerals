@@ -10,7 +10,14 @@ class RomanNumeralController {
 
     def calculate(RomanNumeralCommand command) {
         if (command?.romanNumeral) {
-            command.number = romanNumeralService.fromRomanNumeral(command?.romanNumeral)
+            try {
+                command.number = romanNumeralService.fromRomanNumeral(command?.romanNumeral)
+            } catch (NumberFormatException e) {
+                command.errors.rejectValue(
+                        'romanNumeral',
+                        '',
+                        e.getMessage())
+            }
         } else if (command?.number) {
             command.romanNumeral = romanNumeralService.toRomanNumeral(command?.number)
         }
