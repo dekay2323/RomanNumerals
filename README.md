@@ -12,6 +12,7 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - Gradle for builds
 - Java 8
 - Groovy 3
+- Development time was roughly 10hours
 
 ### Overall
 - Fan of test driven development
@@ -69,6 +70,7 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
     
 ### Tests
 - Ran test coverage, RomanNumeralConverterImpl 100%
+- I did NOT include controller tests, as these are very Grails specific
 
 
 

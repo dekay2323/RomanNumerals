@@ -48,7 +48,7 @@ class RomanNumeralController {
     }
 
     def exceptionHandler(Exception e) {
-        flash.message = e.getMessage()
+        flash.error = e.getMessage()
         log.error "Exception ${e.getMessage()}", e
         withFormat {
             html {
