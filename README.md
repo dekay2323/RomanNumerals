@@ -23,11 +23,15 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - Not a fan of comments, the tests and code should serve as documentation
 - I like to commit to git a lot
 
+### Key files
+- Test/Specification /src/test/groovy/com/strata/RomanNumeralConverterSpec.groovy
+- Converter /src/main/java/com/strata/RomanNumeralConverterImpl.java
+
 ### How to run
 - Using SDKman http://sdkman.io/
--- Download Gradle 2.13
--- Download Grails 3.1.8
--- Download Groovy 2.4.4
+    - Download Gradle 2.13
+    - Download Grails 3.1.8
+    - Download Groovy 2.4.4
 
 #### Tests
 - In the project directory
