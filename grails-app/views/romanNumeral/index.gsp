@@ -6,15 +6,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
+<g:render template="/template/dropdownNav" />
 
 <div class="nav" role="navigation">
     <ul>
-        <li><a class="home" href="${createLink(uri: '/')}">Home</a></li>
+        <li><a class="home" href="${createLink(uri: '/')}">Clear</a></li>
     </ul>
 </div>
 
 <div id="stats" class="content scaffold-list" role="main">
-    <h1>Roman Numeral Converter</h1> - Simple Roman Numeral converter, handles subtractive notation
+    <h2>Simple Roman Numeral converter, handles subtractive notation</h2>
 
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
