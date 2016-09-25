@@ -51,14 +51,14 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
                 romanNumeral = romanNumeral + String.join("", Collections.nCopies(howManyTimes, entry.x));
             }
         }
-        return romanNumeral;
+        return romanNumeral.toUpperCase();
     }
 
     public int fromRomanNumeral(final String romanNumeral) throws NumberFormatException {
         if (romanNumeral == null || romanNumeral.trim() == "") {
             throw new NumberFormatException("Cannot convert empty or null romanNumeral to int");
         }
-        String tempRomanNumeral = romanNumeral;
+        String tempRomanNumeral = romanNumeral.toUpperCase();
         ArrayList<Tuple> listOfPairs = new ArrayList<>(fromRomanNumeralPairs);
         int number = 0;
         while (tempRomanNumeral.length() > 0) {
