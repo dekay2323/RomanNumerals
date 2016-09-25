@@ -61,6 +61,8 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
+    compile 'org.grails.plugins:grails-markdown:3.0.0'
+
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
     // optional dependencies for using Spock
