@@ -105,6 +105,24 @@ class RomanNumeralConverterSpec extends Specification {
 
     }
 
+    def "toRomanNumeral throws exceptions for invalid numbers"() {
+        setup:
+        RomanNumeralConverter convertor = new RomanNumeralConverterImpl()
+
+        when: "value of 0"
+        convertor.toRomanNumeral(0)
+        then:
+        thrown NumberFormatException
+        when: "negative number"
+        convertor.toRomanNumeral(-1)
+        then:
+        thrown NumberFormatException
+        when: "very large number"
+        convertor.toRomanNumeral(RomanNumeralConverter.LARGEST_NUMBER+1)
+        then:
+        thrown NumberFormatException
+    }
+
     @Unroll
     def "Solve toRomanNumeral(#anInteger) = #romanNumeral"() {
         setup:

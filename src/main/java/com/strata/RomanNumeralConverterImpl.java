@@ -43,15 +43,21 @@ public class RomanNumeralConverterImpl implements RomanNumeralConverter {
     }
 
     public String toRomanNumeral(int number) {
-        String romanNumeral = "";
+        if (number <= 0) {
+            throw new NumberFormatException("Cannot convert zero or negative to roman numeral");
+        }
+        if (number > LARGEST_NUMBER) {
+            throw new NumberFormatException("Cannot convert a number larger than " + LARGEST_NUMBER);
+        }
+        StringBuffer romanNumeral = new StringBuffer("");
         for (Tuple entry : toRomanNumeralPairs) {
             if (number / entry.y >= 1) {
                 final int howManyTimes = number / entry.y;
                 number = number - (howManyTimes * entry.y);
-                romanNumeral = romanNumeral + String.join("", Collections.nCopies(howManyTimes, entry.x));
+                romanNumeral = romanNumeral.append(String.join("", Collections.nCopies(howManyTimes, entry.x)));
             }
         }
-        return romanNumeral.toUpperCase();
+        return romanNumeral.toString().toUpperCase();
     }
 
     public int fromRomanNumeral(final String romanNumeral) throws NumberFormatException {

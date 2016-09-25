@@ -14,11 +14,8 @@
 </div>
 
 <div id="stats" class="content scaffold-list" role="main">
-    <h1>Roman Numeral Converter</h1>
+    <h1>Roman Numeral Converter</h1> - Simple Roman Numeral converter, handles subtractive notation
 
-    <div>
-        Simple Roman Numeral convertor, handles subtractive notation.
-    </div>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -32,7 +29,7 @@
     </g:hasErrors>
 
     <g:form action="calculate">
-        <ol class="property-list strategy">
+        <ol class="property-list">
 
             <li class="fieldcontain">
                 <span id="project-label" class="property-label">RomanNumeral</span>
@@ -48,6 +45,9 @@
         </fieldset>
     </g:form>
 </div>
+
+
+
 <script>
     $('#romanNumeral').on('input',function(e) {
         if ($(this).val().length > 0) {

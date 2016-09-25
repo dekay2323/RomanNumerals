@@ -7,6 +7,7 @@ package com.strata;
  * Created by demian on 2016-09-22.
  */
 public interface RomanNumeralConverter {
+    final public static int LARGEST_NUMBER = 10000;
     int fromRomanNumeral(String romanNumeral) throws NumberFormatException;
     String toRomanNumeral(int number);
 }
