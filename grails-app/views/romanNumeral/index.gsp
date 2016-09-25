@@ -3,6 +3,7 @@
 <head>
     <meta name="layout" content="main" />
     <title>Roman Numeral Converter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,18 @@
             <g:submitButton name="calculate" class="save" value="Calculate" />
         </fieldset>
     </g:form>
-
 </div>
+<script>
+    $('#romanNumeral').on('input',function(e) {
+        if ($(this).val().length > 0) {
+            $('#number').val('');
+        }
+    });
+    $('#number').on('input',function(e) {
+        if ($(this).val().length > 0) {
+            $('#romanNumeral').val('');
+        }
+    })
+</script>
 </body>
 </html>
