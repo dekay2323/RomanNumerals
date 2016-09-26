@@ -9,6 +9,29 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
     - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?romanNumeral=IV
     - http://romannumerals.us-east-1.elasticbeanstalk.com/romanNumeral/calculate.json?number=7
 
+# How to run
+- Using SDKman http://sdkman.io/
+    - Download Gradle 2.13
+    - Download Grails 3.1.8
+    - Download Groovy 2.4.4
+
+## Tests
+- In the project directory
+- grails clean
+- grails test-app
+- You can see the test results in /build/reports/tests/index.html
+
+## Run locally (containerless)
+- In the project directory
+- grails run-app
+- Go to http://localhost:8080
+
+## Key files
+- Test/Specification */src/test/groovy/com/strata/RomanNumeralConverterSpec.groovy*
+- Converter */src/main/java/com/strata/RomanNumeralConverterImpl.java*
+
+# Overall
+
 ## Development Process
 - Used IntelliJ which I love.
 - Gradle for builds
@@ -16,33 +39,12 @@ Can convert to and from Simple Roman Numerals (subtractive notation).
 - Groovy 3
 - Development time was roughly 10hours
 
-### Overall
+### Thoughts
 - Fan of test driven development
 - I like to spike, and let the code help me find the answer
 - No side effects, as little state as possible
 - Not a fan of comments, the tests and code should serve as documentation
 - I like to commit to git a lot
-
-### Key files
-- Test/Specification */src/test/groovy/com/strata/RomanNumeralConverterSpec.groovy*
-- Converter */src/main/java/com/strata/RomanNumeralConverterImpl.java*
-
-### How to run
-- Using SDKman http://sdkman.io/
-    - Download Gradle 2.13
-    - Download Grails 3.1.8
-    - Download Groovy 2.4.4
-
-#### Tests
-- In the project directory
-- grails clean
-- grails test-app
-- You can see the test results in /build/reports/tests/index.html
-
-#### Run locally (containerless)
-- In the project directory
-- grails run-app
-- Go to http://localhost:8080
 
 ### Solving the problem
 - In the real world I probably would have eventually Googled for Roman Numeral converters, as there are probably many interesting ways to solve this. 
